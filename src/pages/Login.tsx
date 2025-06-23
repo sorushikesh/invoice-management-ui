@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
+import FinanceBackground from '../components/FinanceBackground'
 
 type Props = {
   onLogin: (user: string) => void
@@ -22,7 +23,8 @@ export default function Login({ onLogin }: Props) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F9FAF8] p-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-[#F9FAF8] p-4 overflow-hidden">
+      <FinanceBackground />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -73,7 +75,7 @@ export default function Login({ onLogin }: Props) {
               type="button"
               animate={{ rotate: toggleRotation }}
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-600"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-600 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-700"
               aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
               {showPassword ? (
