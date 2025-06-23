@@ -204,12 +204,13 @@ body.dark {
 }
 
 .input-wrapper {
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-wrapper input {
   width: 100%;
-  padding: 1rem 1rem 0.6rem;
+  padding: 0.6rem 1rem;
   border-radius: 6px;
   border: none;
   font-size: 1rem;
@@ -219,26 +220,15 @@ body.dark {
 }
 
 .input-wrapper label {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #ccc;
-  transition: transform 0.3s, top 0.3s, font-size 0.3s, color 0.3s;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-heading);
 }
 
 .input-wrapper input:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(118, 226, 255, 0.8), 0 0 8px rgba(118, 226, 255, 0.8);
   transform: translateY(-2px);
-}
-
-.input-wrapper input:focus + label,
-.input-wrapper input:not(:placeholder-shown) + label {
-  top: 0.4rem;
-  font-size: 0.75rem;
-  color: var(--color-accent);
 }
 
 .login-card button {
