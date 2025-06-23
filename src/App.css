@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.side-panel {
+  width: 220px;
+  background-color: #cce7ff;
+  padding: 1rem;
+  text-align: left;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 1rem;
+  text-align: left;
+}
