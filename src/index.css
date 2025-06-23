@@ -4,8 +4,8 @@
   font-weight: 400;
 
   /* Finance app color palette - light mode */
-  --color-primary: #1976d2;
-  --color-primary-hover: #0d47a1;
+  --color-primary: #1e88e5;
+  --color-primary-hover: #1565c0;
   --color-secondary: #43a047;
   --color-secondary-dark: #2e7d32;
   --color-success: #43a047;
@@ -14,11 +14,11 @@
   --color-accent: #fbc02d;
   --color-accent-light: #ffd700;
   --color-text: #212121;
-  --color-heading: #000000;
+  --color-heading: #424242;
   --color-background: #f9fafb;
   --color-surface: #ffffff;
   --button-bg: var(--color-primary);
-  --input-bg: #f3f4f6;
+  --input-bg: #f1f5f9;
 
   color-scheme: light;
   color: var(--color-text);
@@ -59,17 +59,6 @@ body {
   }
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 h1 {
   font-size: 3.2em;
@@ -96,23 +85,8 @@ button:focus-visible {
 }
 
 /* Dark theme */
-body.dark {
-  --color-primary: #0d47a1;
-  --color-primary-hover: #00695c;
-  --color-success: #66bb6a;
-  --color-error: #ef5350;
-  --color-accent: #00acc1;
-  --color-accent-light: #ffc107;
-  --color-text: #e0e0e0;
-  --color-heading: #ffffff;
-  --color-background: #121212;
-  --color-surface: #1e1e1e;
-  --button-bg: var(--color-primary);
-  --input-bg: #2c2c2c;
-  color-scheme: dark;
-}
+/* Login page styling */
 
-/* Futuristic login page styling */
 .login-page {
   position: relative;
   display: flex;
@@ -120,27 +94,14 @@ body.dark {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(135deg, #0d1b2a, #1b3b5f, #0d1b2a);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
-}
-
-.dark-mode-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: transparent;
-  border: none;
-  color: var(--color-text);
-  font-size: 1.5rem;
-  cursor: pointer;
+  padding: 1rem;
+  background-color: var(--color-background);
 }
 
 .forgot-password {
   align-self: flex-start;
   font-size: 0.9rem;
-  color: var(--color-text);
+  color: #616161;
   text-decoration: none;
 }
 .forgot-password:hover {
@@ -150,13 +111,12 @@ body.dark {
 .login-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--color-surface);
+  border-radius: 12px;
   padding: 2rem;
   width: 100%;
   max-width: 800px;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   color: var(--color-text);
   opacity: 0;
   transform: translateY(20px);
@@ -225,6 +185,11 @@ body.dark {
   color: var(--color-heading);
 }
 
+.show-password {
+  color: var(--color-heading);
+  font-size: 0.875rem;
+}
+
 .input-wrapper input:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(118, 226, 255, 0.8), 0 0 8px rgba(118, 226, 255, 0.8);
@@ -232,35 +197,13 @@ body.dark {
 }
 
 .login-card button {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-primary-hover)
-  );
-  transition: transform 0.3s ease;
+  background: var(--color-primary);
   color: #fff;
-}
-
-.login-card button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: skewX(-45deg);
-  transition: left 0.5s;
-}
-
-.login-card button:hover::after {
-  left: 200%;
+  transition: background-color 0.3s ease;
 }
 
 .login-card button:hover {
-  transform: scale(1.05);
+  background: var(--color-primary-hover);
 }
 
 .error-message {
@@ -293,14 +236,3 @@ body.dark {
 
 /* Legacy login container removed in favour of .login-card */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-  }
-  a:hover {
-    color: var(--color-primary-hover);
-  }
-  button {
-    background-color: var(--color-surface);
-  }
-}
