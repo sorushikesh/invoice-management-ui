@@ -3,9 +3,14 @@
   line-height: 1.5;
   font-weight: 400;
 
+  /* Theme variables */
+  --bg-color: skyblue;
+  --text-color: #213547;
+  --button-bg: #1a1a1a;
+
   color-scheme: light;
-  color: #213547;
-  background-color: skyblue;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,6 +33,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 h1 {
@@ -42,7 +49,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--button-bg);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -52,6 +59,29 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Dark theme */
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --button-bg: #333;
+}
+
+/* Login layout */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 300px;
+  margin: auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+}
+
+body.dark .login-container {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 @media (prefers-color-scheme: light) {
