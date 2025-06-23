@@ -11,6 +11,7 @@ export default function Login({ onLogin }: Props) {
   const [showPassword, setShowPassword] = useState(false)
   const [dark, setDark] = useState(false)
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     document.body.classList.toggle('dark', dark)
@@ -19,12 +20,17 @@ export default function Login({ onLogin }: Props) {
   const submit = (e?: FormEvent) => {
     e?.preventDefault()
     if (username && password) {
-      onLogin(username)
-      setUsername('')
-      setPassword('')
-      setError('')
+      setLoading(true)
+      setTimeout(() => {
+        onLogin(username)
+        setUsername('')
+        setPassword('')
+        setError('')
+        setLoading(false)
+      }, 800)
     } else {
       setError('Please enter your email and password.')
+      setLoading(false)
     }
   }
 
@@ -40,21 +46,29 @@ export default function Login({ onLogin }: Props) {
             <p className="tagline">Smart. Secure. Seamless Invoicing.</p>
           </div>
           {error && <p className="error-message">{error}</p>}
-          <input
-            placeholder="Email"
-            value={username}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setUsername(e.target.value)
-            }
-          />
-          <input
-            placeholder="Password"
-            type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
-          />
+          <div className="input-wrapper">
+            <input
+              id="email"
+              placeholder=" "
+              value={username}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setUsername(e.target.value)
+              }
+            />
+            <label htmlFor="email">Email</label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              id="password"
+              placeholder=" "
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
+            />
+            <label htmlFor="password">Password</label>
+          </div>
           <label style={{ alignSelf: 'flex-start' }}>
             <input
               type="checkbox"
@@ -64,8 +78,13 @@ export default function Login({ onLogin }: Props) {
             Show Password
           </label>
           <div>
-            <button type="submit" style={{ marginRight: '0.5rem' }}>
-              Login
+            <button
+              type="submit"
+              className={loading ? 'loading' : ''}
+              disabled={loading}
+              style={{ marginRight: '0.5rem' }}
+            >
+              {loading ? <span className="loader" /> : 'Login'}
             </button>
             <button type="button" onClick={() => setDark(!dark)}>
               {dark ? 'Light' : 'Dark'} Mode
