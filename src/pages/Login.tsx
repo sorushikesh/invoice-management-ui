@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from 'react'
+import { useState, useEffect, type ChangeEvent } from 'react'
 
 type Props = {
   onLogin: (user: string) => void
@@ -7,6 +7,12 @@ type Props = {
 export default function Login({ onLogin }: Props) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [dark, setDark] = useState(false)
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', dark)
+  }, [dark])
 
   const submit = () => {
     if (username) {
@@ -17,7 +23,7 @@ export default function Login({ onLogin }: Props) {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <input
         placeholder="User"
@@ -26,15 +32,32 @@ export default function Login({ onLogin }: Props) {
           setUsername(e.target.value)
         }
       />
-      <input
-        placeholder="Password"
-        type="password"
-        value={password}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setPassword(e.target.value)
-        }
-      />
-      <button onClick={submit}>Login</button>
+      <div>
+        <input
+          placeholder="Password"
+          type={showPassword ? 'text' : 'password'}
+          value={password}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
+        />
+        <label style={{ marginLeft: '0.5rem' }}>
+          <input
+            type="checkbox"
+            checked={showPassword}
+            onChange={() => setShowPassword(!showPassword)}
+          />
+          Show
+        </label>
+      </div>
+      <div>
+        <button onClick={submit} style={{ marginRight: '0.5rem' }}>
+          Login
+        </button>
+        <button type="button" onClick={() => setDark(!dark)}>
+          {dark ? 'Light' : 'Dark'} Mode
+        </button>
+      </div>
     </div>
   )
 }
