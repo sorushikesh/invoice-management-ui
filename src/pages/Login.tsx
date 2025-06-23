@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
-import { useSpring, animated } from '@react-spring/web'
+import { motion } from 'framer-motion'
 
 type Props = {
   onLogin: (user: string) => void
@@ -10,15 +10,7 @@ export default function Login({ onLogin }: Props) {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
-  const cardSpring = useSpring({
-    from: { opacity: 0, transform: 'translateY(30px)' },
-    to: { opacity: 1, transform: 'translateY(0)' },
-  })
-
-  const [hover, setHover] = useState(false)
-  const buttonSpring = useSpring({ scale: hover ? 1.05 : 1 })
-
-  const toggleSpring = useSpring({ rotate: showPassword ? 0 : 180 })
+  const toggleRotation = showPassword ? 0 : 180
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
@@ -31,8 +23,9 @@ export default function Login({ onLogin }: Props) {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F9FAF8] p-4">
-      <animated.div
-        style={cardSpring}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
         className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md"
       >
         <h1 className="text-2xl font-semibold text-gray-800 text-center">
@@ -76,9 +69,9 @@ export default function Login({ onLogin }: Props) {
               required
               className="w-full rounded-md bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-800 pr-10"
             />
-            <animated.button
+            <motion.button
               type="button"
-              style={toggleSpring}
+              animate={{ rotate: toggleRotation }}
               onClick={() => setShowPassword(!showPassword)}
               className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-600"
               aria-label={showPassword ? 'Hide password' : 'Show password'}
@@ -92,7 +85,7 @@ export default function Login({ onLogin }: Props) {
                   👁️
                 </span>
               )}
-            </animated.button>
+            </motion.button>
           </div>
 
           <div>
@@ -104,15 +97,14 @@ export default function Login({ onLogin }: Props) {
             </a>
           </div>
 
-          <animated.button
+          <motion.button
             type="submit"
-            style={buttonSpring}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="w-full bg-green-800 text-white py-2 rounded-md mt-2"
           >
             Login
-          </animated.button>
+          </motion.button>
 
           <div className="flex items-center my-4">
             <div className="flex-grow border-t border-gray-300" />
@@ -175,7 +167,7 @@ export default function Login({ onLogin }: Props) {
             </button>
           </div>
         </form>
-      </animated.div>
+      </motion.div>
     </div>
   )
 }
