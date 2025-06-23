@@ -404,3 +404,15 @@ button:focus-visible {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+.bg-grid-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#23463b 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.05;
+}
