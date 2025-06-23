@@ -3,14 +3,25 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* Theme variables */
-  --bg-color: skyblue;
-  --text-color: #213547;
-  --button-bg: #1a1a1a;
+  /* Finance app color palette - light mode */
+  --color-primary: #1976d2;
+  --color-primary-hover: #0d47a1;
+  --color-secondary: #43a047;
+  --color-secondary-dark: #2e7d32;
+  --color-success: #43a047;
+  --color-error: #d32f2f;
+  --color-error-light: #ff5252;
+  --color-accent: #fbc02d;
+  --color-accent-light: #ffd700;
+  --color-text: #212121;
+  --color-heading: #000000;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
+  --button-bg: var(--color-primary);
 
   color-scheme: light;
-  color: var(--text-color);
-  background-color: var(--bg-color);
+  color: var(--color-text);
+  background-color: var(--color-background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,19 +31,19 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-primary);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-primary-hover);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--color-background);
+  color: var(--color-text);
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
@@ -76,7 +87,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-primary-hover);
 }
 button:focus,
 button:focus-visible {
@@ -85,9 +96,18 @@ button:focus-visible {
 
 /* Dark theme */
 body.dark {
-  --bg-color: #1e1e1e;
-  --text-color: #f0f0f0;
-  --button-bg: #333;
+  --color-primary: #0d47a1;
+  --color-primary-hover: #00695c;
+  --color-success: #66bb6a;
+  --color-error: #ef5350;
+  --color-accent: #00acc1;
+  --color-accent-light: #ffc107;
+  --color-text: #e0e0e0;
+  --color-heading: #ffffff;
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --button-bg: var(--color-primary);
+  color-scheme: dark;
 }
 
 /* Futuristic login page styling */
@@ -192,13 +212,17 @@ body.dark {
 .input-wrapper input:not(:placeholder-shown) + label {
   top: 0.4rem;
   font-size: 0.75rem;
-  color: #76e2ff;
+  color: var(--color-accent);
 }
 
 .login-card button {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, #535bf2, #9b5cff);
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-primary-hover)
+  );
   transition: transform 0.3s ease;
   color: #fff;
 }
@@ -224,7 +248,7 @@ body.dark {
 }
 
 .error-message {
-  color: #ffb4b4;
+  color: var(--color-error-light);
   font-size: 0.9rem;
 }
 
@@ -255,13 +279,12 @@ body.dark {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: skyblue;
+    color-scheme: light;
   }
   a:hover {
-    color: #747bff;
+    color: var(--color-primary-hover);
   }
   button {
-    background-color: #f9f9f9;
+    background-color: var(--color-surface);
   }
 }
