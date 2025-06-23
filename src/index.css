@@ -364,3 +364,43 @@ button:focus-visible {
 
 /* Legacy login container removed in favour of .login-card */
 
+
+.finance-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.finance-bg .icon {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0.1;
+  color: #23463b;
+  animation: float 12s ease-in-out infinite;
+}
+
+.finance-bg .icon-invoice {
+  top: 15%;
+  left: 10%;
+  animation-duration: 14s;
+}
+
+.finance-bg .icon-chart {
+  bottom: 20%;
+  right: 15%;
+  animation-duration: 10s;
+}
+
+.finance-bg .icon-currency {
+  top: 40%;
+  right: 5%;
+  animation-duration: 12s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
