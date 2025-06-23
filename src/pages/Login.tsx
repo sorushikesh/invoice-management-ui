@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ChangeEvent } from 'react'
 
 type Props = {
   onLogin: (user: string) => void
@@ -19,12 +19,20 @@ export default function Login({ onLogin }: Props) {
   return (
     <div>
       <h2>Login</h2>
-      <input placeholder="User" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input
+        placeholder="User"
+        value={username}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setUsername(e.target.value)
+        }
+      />
       <input
         placeholder="Password"
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setPassword(e.target.value)
+        }
       />
       <button onClick={submit}>Login</button>
     </div>

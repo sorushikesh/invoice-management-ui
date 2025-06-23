@@ -1,5 +1,8 @@
 # React + TypeScript + Vite
 
+The application is served under the `/invoice/management` path. When running the
+development server, open `http://localhost:5173/invoice/management/`.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
