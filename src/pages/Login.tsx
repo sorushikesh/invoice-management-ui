@@ -1,4 +1,4 @@
-import { useState, useEffect, type ChangeEvent, FormEvent } from 'react'
+import { useState, type ChangeEvent, FormEvent } from 'react'
 import invoiceSvg from '../assets/invoice.svg'
 
 type Props = {
@@ -9,13 +9,8 @@ export default function Login({ onLogin }: Props) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [dark, setDark] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    document.body.classList.toggle('dark', dark)
-  }, [dark])
 
   const submit = (e?: FormEvent) => {
     e?.preventDefault()
@@ -36,14 +31,6 @@ export default function Login({ onLogin }: Props) {
 
   return (
     <div className="login-page">
-      <button
-        type="button"
-        className="dark-mode-toggle"
-        aria-label="Toggle dark mode"
-        onClick={() => setDark(!dark)}
-      >
-        {dark ? '☀️' : '🌙'}
-      </button>
       <div className="login-card">
         <div className="login-illustration">
           <img src={invoiceSvg} alt="Invoice illustration" width={200} />
@@ -82,7 +69,7 @@ export default function Login({ onLogin }: Props) {
           <a className="forgot-password" href="/forgot-password">
             Forgot Password?
           </a>
-          <label style={{ alignSelf: 'flex-start' }}>
+          <label className="show-password" style={{ alignSelf: 'flex-start' }}>
             <input
               type="checkbox"
               checked={showPassword}
