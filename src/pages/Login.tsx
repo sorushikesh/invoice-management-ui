@@ -36,6 +36,14 @@ export default function Login({ onLogin }: Props) {
 
   return (
     <div className="login-page">
+      <button
+        type="button"
+        className="dark-mode-toggle"
+        aria-label="Toggle dark mode"
+        onClick={() => setDark(!dark)}
+      >
+        {dark ? '☀️' : '🌙'}
+      </button>
       <div className="login-card">
         <div className="login-illustration">
           <img src={invoiceSvg} alt="Invoice illustration" width={200} />
@@ -69,6 +77,9 @@ export default function Login({ onLogin }: Props) {
             />
             <label htmlFor="password">Password</label>
           </div>
+          <a className="forgot-password" href="/forgot-password">
+            Forgot Password?
+          </a>
           <label style={{ alignSelf: 'flex-start' }}>
             <input
               type="checkbox"
@@ -85,9 +96,6 @@ export default function Login({ onLogin }: Props) {
               style={{ marginRight: '0.5rem' }}
             >
               {loading ? <span className="loader" /> : 'Login'}
-            </button>
-            <button type="button" onClick={() => setDark(!dark)}>
-              {dark ? 'Light' : 'Dark'} Mode
             </button>
           </div>
         </form>
