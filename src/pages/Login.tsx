@@ -23,7 +23,7 @@ export default function Login({ onLogin }: Props) {
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-[#F9FAF8] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F9FAF8] via-[#E8F0EA] to-[#D8E3DC] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
       <FinanceBackground />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
