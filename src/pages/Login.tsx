@@ -168,6 +168,24 @@ export default function Login({ onLogin }: Props) {
               </svg>
             </motion.button>
           </div>
+          <div className="divider">or continue with</div>
+          <div className="social-buttons" aria-label="Social login options">
+            <button type="button" className="social-btn" aria-label="Login with Google">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.35 11.1H12v2.8h5.35c-.5 2.6-2.8 3.9-5.35 3.9a6 6 0 010-12c1.5 0 2.85.55 3.9 1.45l2.75-2.75A9.6 9.6 0 0012 2a10 10 0 100 20c5.75 0 9.9-4 9.9-10 0-.65-.05-1.3-.15-1.9Z" fill="#EA4335"/>
+              </svg>
+            </button>
+            <button type="button" className="social-btn" aria-label="Login with GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.58 2 12.2c0 4.5 2.87 8.33 6.84 9.69.5.1.68-.22.68-.48v-1.7c-2.78.62-3.37-1.36-3.37-1.36-.46-1.2-1.12-1.52-1.12-1.52-.92-.64.07-.63.07-.63 1.02.07 1.56 1.07 1.56 1.07.9 1.58 2.36 1.12 2.94.85.09-.67.36-1.12.65-1.37-2.22-.26-4.56-1.15-4.56-5.15 0-1.14.39-2.08 1.03-2.82-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.07a9.3 9.3 0 015 0c1.9-1.35 2.74-1.07 2.74-1.07.55 1.4.2 2.44.1 2.7.64.74 1.03 1.68 1.03 2.82 0 4.01-2.34 4.88-4.57 5.14.37.33.69.97.69 1.95v2.88c0 .26.18.59.69.48A10 10 0 0022 12.2C22 6.58 17.52 2 12 2Z"/>
+              </svg>
+            </button>
+            <button type="button" className="social-btn" aria-label="Login with Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-7h-2.54v-2.88h2.54V9.5c0-2.5 1.48-3.89 3.75-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.88h-2.34v7A10 10 0 0022 12Z"/>
+              </svg>
+            </button>
+          </div>
         </form>
       </motion.div>
     </div>
