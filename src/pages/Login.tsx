@@ -55,27 +55,29 @@ export default function Login({ onLogin }: Props) {
           </div>
           {error && <p className="error-message">{error}</p>}
           <div className="input-wrapper">
+            <label htmlFor="email">
+              Email
+            </label>
             <input
               id="email"
-              placeholder=" "
               value={username}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setUsername(e.target.value)
               }
             />
-            <label htmlFor="email">Email</label>
           </div>
           <div className="input-wrapper">
+            <label htmlFor="password">
+              Password
+            </label>
             <input
               id="password"
-              placeholder=" "
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setPassword(e.target.value)
               }
             />
-            <label htmlFor="password">Password</label>
           </div>
           <a className="forgot-password" href="/forgot-password">
             Forgot Password?
