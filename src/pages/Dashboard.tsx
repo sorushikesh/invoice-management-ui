@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import InvoiceForm from '../components/InvoiceForm'
 import InvoiceList from '../components/InvoiceList'
-import { Invoice } from '../types'
+import type { Invoice } from '../types'
 
 type Props = {
   user: string

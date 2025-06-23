@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Invoice, InvoiceItem } from '../types'
+import { useState, type ChangeEvent } from 'react'
+import type { Invoice, InvoiceItem } from '../types'
 
 type Props = {
   onSave: (invoice: Invoice) => void
@@ -46,11 +46,22 @@ export default function InvoiceForm({ onSave }: Props) {
       <h2>Create Invoice</h2>
       <div>
         <label>Customer</label>
-        <input value={customer} onChange={(e) => setCustomer(e.target.value)} />
+        <input
+          value={customer}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setCustomer(e.target.value)
+          }
+        />
       </div>
       <div>
         <label>Due Date</label>
-        <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+        <input
+          type="date"
+          value={dueDate}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setDueDate(e.target.value)
+          }
+        />
       </div>
       <div>
         <h3>Items</h3>
@@ -59,25 +70,33 @@ export default function InvoiceForm({ onSave }: Props) {
             <input
               placeholder="Description"
               value={item.description}
-              onChange={(e) => updateItem(i, 'description', e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                updateItem(i, 'description', e.target.value)
+              }
             />
             <input
               type="number"
               placeholder="Qty"
               value={item.quantity}
-              onChange={(e) => updateItem(i, 'quantity', e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                updateItem(i, 'quantity', e.target.value)
+              }
             />
             <input
               type="number"
               placeholder="Price"
               value={item.price}
-              onChange={(e) => updateItem(i, 'price', e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                updateItem(i, 'price', e.target.value)
+              }
             />
             <input
               type="number"
               placeholder="Tax %"
               value={item.tax}
-              onChange={(e) => updateItem(i, 'tax', e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                updateItem(i, 'tax', e.target.value)
+              }
             />
           </div>
         ))}
@@ -85,7 +104,13 @@ export default function InvoiceForm({ onSave }: Props) {
       </div>
       <div>
         <label>Discount</label>
-        <input type="number" value={discount} onChange={(e) => setDiscount(Number(e.target.value))} />
+        <input
+          type="number"
+          value={discount}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setDiscount(Number(e.target.value))
+          }
+        />
       </div>
       <div>Total: {total.toFixed(2)}</div>
       <button onClick={save}>Save Invoice</button>
