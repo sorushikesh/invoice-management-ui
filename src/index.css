@@ -18,6 +18,7 @@
   --color-background: #f9fafb;
   --color-surface: #ffffff;
   --button-bg: var(--color-primary);
+  --input-bg: #f3f4f6;
 
   color-scheme: light;
   color: var(--color-text);
@@ -107,11 +108,13 @@ body.dark {
   --color-background: #121212;
   --color-surface: #1e1e1e;
   --button-bg: var(--color-primary);
+  --input-bg: #2c2c2c;
   color-scheme: dark;
 }
 
 /* Futuristic login page styling */
 .login-page {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,6 +124,27 @@ body.dark {
   background: linear-gradient(135deg, #0d1b2a, #1b3b5f, #0d1b2a);
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
+}
+
+.dark-mode-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.forgot-password {
+  align-self: flex-start;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.forgot-password:hover {
+  text-decoration: underline;
 }
 
 .login-card {
@@ -133,7 +157,7 @@ body.dark {
   max-width: 800px;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
+  color: var(--color-text);
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease forwards;
@@ -189,8 +213,8 @@ body.dark {
   border-radius: 6px;
   border: none;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  background: var(--input-bg);
+  color: var(--color-text);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
