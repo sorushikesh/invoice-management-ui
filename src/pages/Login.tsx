@@ -23,17 +23,17 @@ export default function Login({ onLogin }: Props) {
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-[#F9FAF8] p-4 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center bg-[#F9FAF8] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
       <FinanceBackground />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md"
+        className="bg-white/90 backdrop-blur-sm shadow-xl rounded-xl p-8 w-full max-w-md"
       >
-        <h1 className="text-2xl font-semibold text-gray-800 text-center">
+        <h1 className="text-2xl font-bold text-[#1F4C3B] text-center">
           Bilsora – Invoice Management
         </h1>
-        <p className="text-sm text-gray-600 text-center mt-1">
+        <p className="text-sm text-gray-500 text-center mt-1">
           Smart. Secure. Seamless Invoicing.
         </p>
 
@@ -50,7 +50,7 @@ export default function Login({ onLogin }: Props) {
                 setEmail(e.target.value)
               }
               required
-              className="w-full rounded-md bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-800"
+              className="w-full rounded-md bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#1F4C3B] text-gray-800"
             />
           </div>
 
@@ -69,13 +69,13 @@ export default function Login({ onLogin }: Props) {
                 setPassword(e.target.value)
               }
               required
-              className="w-full rounded-md bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-700 text-gray-800 pr-10"
+              className="w-full rounded-md bg-gray-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#1F4C3B] text-gray-800 pr-10"
             />
             <motion.button
               type="button"
               animate={{ rotate: toggleRotation }}
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-600 hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-700"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-600 hover:text-[#1F4C3B] focus:outline-none focus:ring-2 focus:ring-[#1F4C3B]"
               aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
               {showPassword ? (
@@ -93,7 +93,7 @@ export default function Login({ onLogin }: Props) {
           <div>
             <a
               href="/forgot-password"
-              className="text-sm text-green-800 hover:underline"
+              className="text-sm text-[#1F4C3B] hover:underline"
             >
               Forgot Password?
             </a>
@@ -103,7 +103,7 @@ export default function Login({ onLogin }: Props) {
             type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-full bg-green-800 text-white py-2 rounded-md mt-2"
+            className="w-full bg-[#1F4C3B] text-white py-2 rounded-md mt-2"
           >
             Login
           </motion.button>
