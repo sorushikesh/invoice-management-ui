@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiEye, FiEyeOff, FiX } from 'react-icons/fi'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 type Props = {
   onLogin: (user: string) => void
@@ -41,12 +42,14 @@ export default function Login({ onLogin, isVisible = true, onClose }: Props) {
             transition={{ duration: 0.5 }}
             className="relative bg-white/90 backdrop-blur-sm shadow-xl rounded-xl p-8 w-full max-w-md"
           >
-            <button
+            <motion.button
               className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
               onClick={onClose}
+              whileHover={{ rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <FiX size={20} />
-            </button>
+              <AiOutlineCloseCircle size={16} />
+            </motion.button>
 
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
