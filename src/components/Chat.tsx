@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
-import { FiX } from 'react-icons/fi'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 interface Message {
   sender: 'user' | 'bot'
@@ -143,12 +143,14 @@ export default function Chat({ onClose }: Props) {
         transition={{ duration: 0.4 }}
       >
         {/* Close Button */}
-        <button
+        <motion.button
           onClick={onClose}
+          whileHover={{ rotate: 90 }}
+          whileTap={{ scale: 0.9 }}
           className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
         >
-          <FiX size={20} />
-        </button>
+          <AiOutlineCloseCircle size={16} />
+        </motion.button>
 
         {/* Header */}
         <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Chat Assistant</h2>
