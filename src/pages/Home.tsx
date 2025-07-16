@@ -11,7 +11,7 @@ export default function Home({ onLogin }: Props) {
 
   return (
     <div className="min-h-screen flex flex-col items-center p-4">
-      <div className="mb-4 space-x-2">
+      <div className="mb-4 space-x-2 sticky top-0 bg-white/90 p-2 z-10">
         <button
           onClick={() => setTab('login')}
           className={`px-4 py-2 rounded ${
