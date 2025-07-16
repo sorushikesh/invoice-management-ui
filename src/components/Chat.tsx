@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+import { FaRobot, FaUser, FaTrash } from 'react-icons/fa'
 
 interface Message {
   sender: 'user' | 'bot'
@@ -172,7 +173,7 @@ export default function Chat({ onClose }: Props) {
               >
                 {msg.sender === 'bot' && (
                   <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold text-sm">
-                    🤖
+                    <FaRobot />
                   </div>
                 )}
                 <div>
@@ -193,7 +194,7 @@ export default function Chat({ onClose }: Props) {
                 </div>
                 {msg.sender === 'user' && (
                   <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-semibold text-sm">
-                    🧑
+                    <FaUser />
                   </div>
                 )}
               </motion.div>
@@ -208,7 +209,7 @@ export default function Chat({ onClose }: Props) {
                 className="flex items-start gap-2"
               >
                 <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold text-sm">
-                  🤖
+                  <FaRobot />
                 </div>
                 <div className="max-w-xs px-4 py-2 rounded-lg text-sm bg-white dark:bg-gray-600 text-gray-900 dark:text-white font-mono whitespace-pre-wrap">
                   {streamingBotMessage}
@@ -239,7 +240,7 @@ export default function Chat({ onClose }: Props) {
             className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
             title="Clear chat"
           >
-            🗑️
+            <FaTrash />
           </button>
         </div>
       </motion.div>
