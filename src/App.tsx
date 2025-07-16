@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
+import Layout from './components/Layout'
 import './App.css'
 
 export default function App() {
@@ -9,14 +10,16 @@ export default function App() {
 
   return (
     <BrowserRouter basename="/invoice/management">
-      <Routes>
-        <Route path="/" element={<Home onLogin={setUser} />} />
-        <Route
-          path="/dashboard"
-          element={user ? <Dashboard user={user} /> : <Navigate to="/" replace />}
-        />
-        <Route path="*" element={<Navigate to={user ? '/dashboard' : '/'} replace />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home onLogin={setUser} />} />
+          <Route
+            path="/dashboard"
+            element={user ? <Dashboard user={user} /> : <Navigate to="/" replace />}
+          />
+          <Route path="*" element={<Navigate to={user ? '/dashboard' : '/'} replace />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   )
 }

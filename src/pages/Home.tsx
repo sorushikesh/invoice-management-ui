@@ -9,14 +9,8 @@ const Chat = dynamic(() => import('../components/Chat'))
 export default function Home() {
   const [tab, setTab] = useState<'none' | 'login' | 'chat'>('none')
 
-  const backgroundStyle = {
-    backgroundImage: "url('https://images.unsplash.com/photo-1521791136064-7986c2920216')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  }
-
   return (
-    <div className="w-full h-screen flex items-center justify-center relative" style={backgroundStyle}>
+    <div className="w-full h-screen flex items-center justify-center relative">
       {tab === 'none' && (
         <motion.div
           className="flex space-x-6"
