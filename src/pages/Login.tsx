@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import FinanceBackground from '../components/FinanceBackground'
+import Layout from '../components/Layout'
 
 type Props = {
   onLogin: (user: string) => void
@@ -175,10 +175,5 @@ export default function Login({ onLogin, embedded = false }: Props) {
     return card
   }
 
-  return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F9FAF8] via-[#E8F0EA] to-[#D8E3DC] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
-      <FinanceBackground />
-      {card}
-    </div>
-  )
+  return <Layout>{card}</Layout>
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import FinanceBackground from '../components/FinanceBackground'
+import { AnimatePresence, motion } from 'framer-motion'
+import Layout from '../components/Layout'
 
 interface Msg {
   sender: 'user' | 'bot'
@@ -74,18 +74,21 @@ export default function Chat({ embedded = false }: Props) {
       className="bg-white/90 backdrop-blur-sm shadow-xl rounded-xl p-6 w-full max-w-xl flex flex-col h-[70vh]"
     >
       <div className="flex-1 overflow-y-auto mb-2">
-        {messages.map((msg, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`my-1 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}
-          >
-            <span className="inline-block p-2 rounded bg-gray-100">
-              {msg.text}
-            </span>
-          </motion.div>
-        ))}
+        <AnimatePresence initial={false}>
+          {messages.map((msg, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className={`my-1 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}
+            >
+              <span className="inline-block p-2 rounded bg-gray-100">
+                {msg.text}
+              </span>
+            </motion.div>
+          ))}
+        </AnimatePresence>
         {loading && (
           <div className="my-1 text-left">
             <span className="inline-block p-2 rounded bg-gray-100">
@@ -126,10 +129,5 @@ export default function Chat({ embedded = false }: Props) {
     return panel
   }
 
-  return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F9FAF8] via-[#E8F0EA] to-[#D8E3DC] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
-      <FinanceBackground />
-      {panel}
-    </div>
-  )
+  return <Layout>{panel}</Layout>
 }
