@@ -11,20 +11,26 @@ export default function LoginChatSwitcher({ onLogin }: Props) {
   const [tab, setTab] = useState<'login' | 'chat'>('login')
 
   return (
-    <div className="relative w-full max-w-4xl flex items-center justify-center">
-      <button
-        onClick={() => setTab('login')}
-        className={`px-4 py-2 rounded shadow-md backdrop-blur-md bg-white/80 transition-all ${tab === 'login' ? 'bg-primary text-white' : ''} ${tab ? 'absolute top-4 left-4' : 'mx-2'}`}
-      >
-        Login
-      </button>
-      <button
-        onClick={() => setTab('chat')}
-        className={`px-4 py-2 rounded shadow-md backdrop-blur-md bg-white/80 transition-all ${tab === 'chat' ? 'bg-primary text-white' : ''} ${tab ? 'absolute top-4 right-4' : 'mx-2'}`}
-      >
-        Chat
-      </button>
-      <div className="w-full flex justify-center mt-10">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="w-full max-w-4xl mx-auto flex flex-col items-center"
+    >
+      <div className="flex space-x-4 mb-6">
+        <button
+          onClick={() => setTab('login')}
+          className={`px-4 py-2 rounded shadow-md backdrop-blur-md bg-white/80 transition-colors ${tab === 'login' ? 'bg-primary text-white' : ''}`}
+        >
+          Login
+        </button>
+        <button
+          onClick={() => setTab('chat')}
+          className={`px-4 py-2 rounded shadow-md backdrop-blur-md bg-white/80 transition-colors ${tab === 'chat' ? 'bg-primary text-white' : ''}`}
+        >
+          Chat
+        </button>
+      </div>
+      <div className="w-full flex justify-center">
         <AnimatePresence mode="wait">
           {tab === 'login' && (
             <motion.div
@@ -50,6 +56,6 @@ export default function LoginChatSwitcher({ onLogin }: Props) {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   )
 }
