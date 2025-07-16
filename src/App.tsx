@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './pages/Login'
+import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import './App.css'
 
@@ -10,12 +10,12 @@ export default function App() {
   return (
     <BrowserRouter basename="/invoice/management">
       <Routes>
-        <Route path="/login" element={<Login onLogin={setUser} />} />
+        <Route path="/" element={<Home onLogin={setUser} />} />
         <Route
           path="/dashboard"
-          element={user ? <Dashboard user={user} /> : <Navigate to="/login" replace />}
+          element={user ? <Dashboard user={user} /> : <Navigate to="/" replace />}
         />
-        <Route path="*" element={<Navigate to={user ? '/dashboard' : '/login'} replace />} />
+        <Route path="*" element={<Navigate to={user ? '/dashboard' : '/'} replace />} />
       </Routes>
     </BrowserRouter>
   )
