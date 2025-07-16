@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import FinanceBackground from '../components/FinanceBackground'
 
@@ -11,6 +11,8 @@ export default function Chat() {
   const STORAGE_KEY = 'chatMessages'
   const [messages, setMessages] = useState<Msg[]>([])
   const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+
 
   // load previous messages from localStorage
   useEffect(() => {
@@ -33,9 +35,10 @@ export default function Chat() {
 
   const send = async () => {
     if (!input.trim()) return
-    const userMsg = { sender: 'user', text: input }
-    setMessages((m) => [...m, userMsg])
+    const userMsg: Msg = { sender: "user", text: input };
+    setMessages((m) => [...m, userMsg]);
     setInput('')
+    setLoading(true)
     try {
       const resp = await fetch('http://localhost:8080/api/chat', {
         method: 'POST',
@@ -46,10 +49,12 @@ export default function Chat() {
         body: JSON.stringify({ message: userMsg.text }),
       })
       const data = await resp.json()
-      const botText = data.message ?? data.reply ?? JSON.stringify(data)
+      const botText = data.answer ?? data.message ?? data.reply ?? JSON.stringify(data)
       setMessages((m) => [...m, { sender: 'bot', text: botText }])
     } catch (err) {
       setMessages((m) => [...m, { sender: 'bot', text: 'Error sending message' }])
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -68,12 +73,28 @@ export default function Chat() {
       >
         <div className="flex-1 overflow-y-auto mb-2">
           {messages.map((msg, idx) => (
-            <div key={idx} className={`my-1 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`my-1 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}
+            >
               <span className="inline-block p-2 rounded bg-gray-100">
                 {msg.text}
               </span>
-            </div>
+            </motion.div>
           ))}
+                    {loading && (
+            <div className="my-1 text-left">
+              <span className="inline-block p-2 rounded bg-gray-100">
+                <span className="typing">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </span>
+            </div>
+          )}
         </div>
         <div className="flex space-x-2">
           <input
