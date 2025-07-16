@@ -2,6 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+import { FaGoogle, FaGithub, FaFacebook } from 'react-icons/fa'
 
 type Props = {
   onLogin: (user: string) => void
@@ -160,17 +161,23 @@ export default function Login({ onLogin, isVisible = true, onClose }: Props) {
                   },
                 }}
               >
-                {['Google', 'GitHub', 'Facebook'].map((provider) => (
+                {(
+                  [
+                    { name: 'Google', icon: <FaGoogle size={20} /> },
+                    { name: 'GitHub', icon: <FaGithub size={20} /> },
+                    { name: 'Facebook', icon: <FaFacebook size={20} /> },
+                  ] as const
+                ).map((provider) => (
                   <motion.button
-                    key={provider}
+                    key={provider.name}
                     type="button"
-                    aria-label={`Login with ${provider}`}
+                    aria-label={`Login with ${provider.name}`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
                     className="w-10 h-10 rounded-full border flex items-center justify-center text-gray-600 hover:bg-gray-100"
                   >
-                    <span className="text-sm font-bold">{provider[0]}</span>
+                    {provider.icon}
                   </motion.button>
                 ))}
               </motion.div>
