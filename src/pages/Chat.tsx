@@ -8,8 +8,28 @@ interface Msg {
 }
 
 export default function Chat() {
+  const STORAGE_KEY = 'chatMessages'
   const [messages, setMessages] = useState<Msg[]>([])
   const [input, setInput] = useState('')
+
+  // load previous messages from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      try {
+        setMessages(JSON.parse(saved))
+      } catch {
+        // ignore parse errors
+      }
+    }
+  }, [])
+
+  // persist messages on change
+  useEffect(() => {
+    if (messages.length) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
+    }
+  }, [messages])
 
   const send = async () => {
     if (!input.trim()) return
@@ -31,6 +51,11 @@ export default function Chat() {
     } catch (err) {
       setMessages((m) => [...m, { sender: 'bot', text: 'Error sending message' }])
     }
+  }
+
+  const reset = () => {
+    setMessages([])
+    localStorage.removeItem(STORAGE_KEY)
   }
 
   return (
@@ -62,6 +87,13 @@ export default function Chat() {
           />
           <button className="px-4 bg-[#1F4C3B] text-white rounded" onClick={send}>
             Send
+          </button>
+          <button
+            className="px-4 bg-red-500 text-white rounded"
+            type="button"
+            onClick={reset}
+          >
+            Reset
           </button>
         </div>
       </motion.div>
