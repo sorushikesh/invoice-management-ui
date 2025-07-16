@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import FinanceBackground from '../components/FinanceBackground'
 
 interface Msg {
   sender: 'user' | 'bot'
@@ -6,8 +8,28 @@ interface Msg {
 }
 
 export default function Chat() {
+  const STORAGE_KEY = 'chatMessages'
   const [messages, setMessages] = useState<Msg[]>([])
   const [input, setInput] = useState('')
+
+  // load previous messages from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      try {
+        setMessages(JSON.parse(saved))
+      } catch {
+        // ignore parse errors
+      }
+    }
+  }, [])
+
+  // persist messages on change
+  useEffect(() => {
+    if (messages.length) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
+    }
+  }, [messages])
 
   const send = async () => {
     if (!input.trim()) return
@@ -31,31 +53,50 @@ export default function Chat() {
     }
   }
 
+  const reset = () => {
+    setMessages([])
+    localStorage.removeItem(STORAGE_KEY)
+  }
+
   return (
-    <div className="p-4 max-w-xl mx-auto flex flex-col h-[70vh] border rounded bg-white/90">
-      <div className="flex-1 overflow-y-auto mb-2">
-        {messages.map((msg, idx) => (
-          <div key={idx} className={`my-1 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
-            <span className="inline-block p-2 rounded bg-gray-100">
-              {msg.text}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="flex space-x-2">
-        <input
-          className="flex-1 border rounded p-2"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') send()
-          }}
-          placeholder="Type a message..."
-        />
-        <button className="px-4 bg-[#1F4C3B] text-white rounded" onClick={send}>
-          Send
-        </button>
-      </div>
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F9FAF8] via-[#E8F0EA] to-[#D8E3DC] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
+      <FinanceBackground />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white/90 backdrop-blur-sm shadow-xl rounded-xl p-6 w-full max-w-xl flex flex-col h-[70vh]"
+      >
+        <div className="flex-1 overflow-y-auto mb-2">
+          {messages.map((msg, idx) => (
+            <div key={idx} className={`my-1 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
+              <span className="inline-block p-2 rounded bg-gray-100">
+                {msg.text}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="flex space-x-2">
+          <input
+            className="flex-1 border rounded p-2"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') send()
+            }}
+            placeholder="Type a message..."
+          />
+          <button className="px-4 bg-[#1F4C3B] text-white rounded" onClick={send}>
+            Send
+          </button>
+          <button
+            className="px-4 bg-red-500 text-white rounded"
+            type="button"
+            onClick={reset}
+          >
+            Reset
+          </button>
+        </div>
+      </motion.div>
     </div>
   )
 }
