@@ -4,9 +4,10 @@ import FinanceBackground from '../components/FinanceBackground'
 
 type Props = {
   onLogin: (user: string) => void
+    embedded?: boolean
 }
 
-export default function Login({ onLogin }: Props) {
+export default function Login({ onLogin, embedded = false }: Props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -22,20 +23,18 @@ export default function Login({ onLogin }: Props) {
     }
   }
 
-  return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F9FAF8] via-[#E8F0EA] to-[#D8E3DC] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
-      <FinanceBackground />
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white/90 backdrop-blur-sm shadow-xl rounded-xl p-8 w-full max-w-md"
-      >
-        <h1 className="text-2xl font-bold text-[#1F4C3B] text-center">
-          Bilsora – Invoice Management
-        </h1>
-        <p className="text-sm text-gray-500 text-center mt-1">
-          Smart. Secure. Seamless Invoicing.
-        </p>
+  const card = (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white/90 backdrop-blur-sm shadow-xl rounded-xl p-8 w-full max-w-md"
+    >
+      <h1 className="text-2xl font-bold text-[#1F4C3B] text-center">
+        Bilsora – Invoice Management
+      </h1>
+      <p className="text-sm text-gray-500 text-center mt-1">
+        Smart. Secure. Seamless Invoicing.
+      </p>
 
         <form onSubmit={submit} className="mt-6 space-y-4">
           <div>
@@ -169,8 +168,17 @@ export default function Login({ onLogin }: Props) {
             </button>
           </div>
         </form>
-      </motion.div>
+    </motion.div>
+  )
+
+  if (embedded) {
+    return card
+  }
+
+  return (
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F9FAF8] via-[#E8F0EA] to-[#D8E3DC] p-4 overflow-hidden font-['Poppins','Inter',sans-serif]">
+      <FinanceBackground />
+      {card}
     </div>
   )
 }
-
