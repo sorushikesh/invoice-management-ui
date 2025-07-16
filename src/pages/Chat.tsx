@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import FinanceBackground from '../components/FinanceBackground'
 
@@ -33,8 +33,8 @@ export default function Chat() {
 
   const send = async () => {
     if (!input.trim()) return
-    const userMsg = { sender: 'user', text: input }
-    setMessages((m) => [...m, userMsg])
+    const userMsg: Msg = { sender: "user", text: input };
+    setMessages((m) => [...m, userMsg]);
     setInput('')
     try {
       const resp = await fetch('http://localhost:8080/api/chat', {
