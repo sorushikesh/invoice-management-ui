@@ -10,23 +10,23 @@ export default function Home() {
   const [tab, setTab] = useState<'none' | 'login' | 'chat'>('none')
 
   return (
-    <div className="w-full h-screen flex items-center justify-center relative">
+    <div className="w-screen h-screen flex items-center justify-center relative">
       {tab === 'none' && (
         <motion.div
-          className="flex space-x-6"
+          className="flex space-x-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
           <motion.button
             className="px-6 py-3 bg-white/80 rounded-lg shadow font-semibold text-[#1F4C3B] hover:bg-white"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.5 }}
             onClick={() => setTab('login')}
           >
             Login
           </motion.button>
           <motion.button
             className="px-6 py-3 bg-white/80 rounded-lg shadow font-semibold text-[#1F4C3B] hover:bg-white"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.5 }}
             onClick={() => setTab('chat')}
           >
             Chat
